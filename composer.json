@@ -17,7 +17,8 @@
       "lib\\":"lib/",
       "Model\\":"model/",
       "Dao\\":"dao/",
-      "Service\\":"service/"
+      "Service\\":"service/",
+      "Exceptions\\":"exceptions/"
     }
   }
 }
