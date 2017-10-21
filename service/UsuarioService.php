@@ -7,6 +7,7 @@ use Exceptions\LoginInvalidException;
 class UsuarioService
 {
     private $usuarioDao;
+    private static $instance;
 
     /**
      * UsuarioService constructor.
@@ -17,8 +18,18 @@ class UsuarioService
         $this->usuarioDao = new UsuarioDao();
     }
 
+    public static function getInstance()
+    {
+        if (self::$instance = !null) {
+
+            self::$instance = new self;
+        }
+
+        return self::$instance;
+    }
+
     public function getAll() {
-        $this->usuarioDao->findAll();
+        return $this->usuarioDao->findAll();
     }
 
     public function verifyLogin($login, $senha) {
