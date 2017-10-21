@@ -11,9 +11,7 @@ $session = Session::getInstance();
 
 $app->get('/', function ($request, $response) use ($session){
 
-    $service = new UsuarioService();
-    return print_r($service->verifyLogin('bcaldas','recoil'));
-
+    return $this->view->render($response,'login.twig');
 })->setName('home');
 
 $app->run();
