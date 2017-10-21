@@ -8,7 +8,6 @@ use PDOStatement;
 class Db{
 
     private static $conexao_pdo;
-    private static $connectUsers;
 
     public static function query($sql,$params=null,$class=null)
     {
@@ -84,22 +83,5 @@ class Db{
             }
         }
         return self::$conexao_pdo;
-    }
-
-    public static function connectUsers($host, $base, $usuario, $senha)
-    {
-        if(!isset(self::$connectUsers)){
-            try {
-                $parametrosConexao = 'mysql:host=' . $host . ';dbname='. $base;
-                $opcoes = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES UTF8');
-                self::$connectUsers = new PDO($parametrosConexao,$usuario,$senha, $opcoes);
-                self::$connectUsers->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                self::$connectUsers->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
-
-            } catch (PDOException $e) {
-                print "Erro ao conectar com o banco de dados. Verifique os Detalhes do erro abaixo:<br>" . $e->getMessage();
-            }
-        }
-        return self::$connectUsers;
     }
 }

@@ -11,7 +11,7 @@ namespace model;
 
 class Usuario
 {
-    private $id;
+    private $usuario_id;
     private $nome;
     private $login;
     private $senha;
@@ -19,17 +19,17 @@ class Usuario
     /**
      * @return mixed
      */
-    public function getId()
+    public function getUsuarioId()
     {
-        return $this->id;
+        return $this->usuario_id;
     }
 
     /**
-     * @param mixed $id
+     * @param mixed $usuario_id
      */
-    public function setId($id)
+    public function setUsuarioId($usuario_id)
     {
-        $this->id = $id;
+        $this->usuario_id = $usuario_id;
     }
 
     /**
