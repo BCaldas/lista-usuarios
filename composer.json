@@ -10,12 +10,11 @@
   "require": {
     "ext-pdo": "*",
     "slim/slim": "^3.0",
-    "slim/twig-view": "^2.0",
-    "slim/flash": "^0.1.0"
+    "slim/twig-view": "^2.0"
   },
   "autoload":{
     "psr-4":{
-
+      "lib\\":"lib/"
     }
   }
 }
