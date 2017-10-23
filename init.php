@@ -48,7 +48,16 @@ $container['view'] = function ($container) {
     ));
 
     $view->addExtension(new Twig_Extension_Debug());
+
+    $view->addExtension(new Knlv\Slim\Views\TwigMessages(
+        new Slim\Flash\Messages()
+    ));
     return $view;
+};
+
+// Registra o Flash Service Provider no container do Slim
+$container['flash'] = function () {
+    return new \Slim\Flash\Messages();
 };
 
 /**

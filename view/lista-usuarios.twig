@@ -1,4 +1,9 @@
 {% extends "base/template.twig" %}
+
+{% block css %}
+    <link href="public_html/css/plugins/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css">
+{% endblock %}
+
 {% block title %}Lista Usuários{% endblock %}
 
 {% block content%}
@@ -1135,4 +1140,9 @@
     {#</div>#}
 {#</div>#}
     </body>
+{% endblock %}
+
+{% block scripts %}
+    <script src="public_html/js/plugins/dataTables.bootstrap.min.js"></script>
+    <script src="public_html/js/plugins/jquery.dataTables.min.js"></script>
 {% endblock %}

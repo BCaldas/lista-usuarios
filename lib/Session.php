@@ -15,12 +15,15 @@ class Session
     {
 
         if (self::$instancia = !null) {
-            session_name('lista_usuarios');
-            session_start();
             self::$instancia = new Session();
         }
 
         return self::$instancia;
+    }
+
+    public function startSession() {
+        session_name('lista_usuarios');
+        session_start();
     }
 
     public function set($chave, $valor)

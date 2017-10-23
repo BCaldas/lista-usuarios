@@ -15,68 +15,88 @@ class Usuario
     private $nome;
     private $login;
     private $senha;
+    private $cargo;
+    private $email;
+    private $data_criacao;
+    private $data_atualizacao;
 
-    /**
-     * @return mixed
-     */
     public function getUsuarioId()
     {
         return $this->usuario_id;
     }
 
-    /**
-     * @param mixed $usuario_id
-     */
     public function setUsuarioId($usuario_id)
     {
         $this->usuario_id = $usuario_id;
     }
 
-    /**
-     * @return mixed
-     */
     public function getNome()
     {
         return $this->nome;
     }
 
-    /**
-     * @param mixed $nome
-     */
     public function setNome($nome)
     {
         $this->nome = $nome;
     }
 
-    /**
-     * @return mixed
-     */
     public function getLogin()
     {
         return $this->login;
     }
 
-    /**
-     * @param mixed $login
-     */
     public function setLogin($login)
     {
         $this->login = $login;
     }
 
-    /**
-     * @return mixed
-     */
     public function getSenha()
     {
         return $this->senha;
     }
 
-    /**
-     * @param mixed $senha
-     */
     public function setSenha($senha)
     {
         $this->senha = $senha;
+    }
+
+    public function getCargo()
+    {
+        return $this->cargo;
+    }
+
+    public function setCargo($cargo)
+    {
+        $this->cargo = $cargo;
+    }
+
+    public function getDataCriacao()
+    {
+        return $this->data_criacao;
+    }
+
+    public function setDataCriacao($data_criacao)
+    {
+        $this->data_criacao = $data_criacao;
+    }
+
+    public function getDataAtualizacao()
+    {
+        return $this->data_atualizacao;
+    }
+
+    public function setDataAtualizacao($data_atualizacao)
+    {
+        $this->data_atualizacao = $data_atualizacao;
+    }
+
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    public function setEmail($email)
+    {
+        $this->email = $email;
     }
 }

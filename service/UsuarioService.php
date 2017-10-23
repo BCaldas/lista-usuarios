@@ -3,6 +3,7 @@ namespace Service;
 
 use Dao\UsuarioDao;
 use Exceptions\LoginInvalidException;
+use lib\Session;
 
 class UsuarioService
 {
@@ -32,14 +33,19 @@ class UsuarioService
         return $this->usuarioDao->findAll();
     }
 
-    public function verifyLogin($login, $senha) {
+    public function logon($login, $senha) {
 
         $usuario = $this->usuarioDao->findByLoginAndSenha($login, $senha);
 
         if ($usuario) {
-            return $usuario;
+            $session = Session::getInstance();
+            $session->set('logado',true);
+            $session->set('nome',$usuario[0]->getNome());
+            $session->set('cargo', $usuario[0]->getCargo());
+            $session->set('dataCriacao', $usuario[0]->getDataCriacao());
+            return true;
         } else {
-            throw new LoginInvalidException('Usuário ou senha inválidos');
+            return false;
         }
     }
 }
