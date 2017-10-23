@@ -31,6 +31,7 @@ Pequeno sistema web para cadastro, listagem e login de usuários e acesso a algu
 
 - clone o repostório dentro da pasta de seu servidor Web
 - rode o dump do banco de dados que se encontra na raiz do projeto com o nome de dump.sql
+- Altere as configurações de banco de dados da aplicação no arquivo ConfigBd.php que se encontra na raiz do projeto
 - rode o comando:
 ```bash
 $ composer install
