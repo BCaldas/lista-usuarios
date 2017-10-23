@@ -81,6 +81,20 @@
                         <li><a href="{{ path_for('listaUsuarios') }}"><i class="fa fa-circle-o"></i> Usuários Cadastrados</a></li>
                     </ul>
                 </li>
+
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-rocket"></i> <span>API Nasa</span>
+                        <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ path_for('apod') }}"><i class="fa fa-circle-o"></i> Imagens de Astronomia </a></li>
+                        <li><a href="{{ path_for('patentes') }}"><i class="fa fa-circle-o"></i> Patentes</a></li>
+                        <li><a href="{{ path_for('asteroides') }}0"><i class="fa fa-circle-o"></i> Asteroids Próximos a Terra</a></li>
+                    </ul>
+                </li>
             </ul>
         </section>
 

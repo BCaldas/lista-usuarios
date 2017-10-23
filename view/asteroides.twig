@@ -1,0 +1,74 @@
+{% extends "base/template.twig" %}
+
+{% block title %}Neo Browse{% endblock %}
+
+{% block content%}
+
+    <div class="content-wrapper" style="min-height: 946px;">
+    <section class="content-header">
+        <h1>
+            Nasa
+            <small>Asteróides Próximos a Terra</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><i class="fa fa-home"></i> Home</li>
+            <li> Nasa </li>
+            <li class="active">Asteróides Próximos</li>
+        </ol>
+    </section>
+
+    <section class="content">
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+
+                    <div class="box-body">
+                        <table id="example2" class="table table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Diâmetro Min.(Km)</th>
+                                <th>Diâmetro Máx.(Km)</th>
+                                <th>Apresenta Perigo</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for d in data.near_earth_objects %}
+                                <tr>
+                                    <td>{{ d.name }}</td>
+                                    <td>{{ d.estimated_diameter.kilometers.estimated_diameter_min }}</td>
+                                    <td>{{ d.estimated_diameter.kilometers.estimated_diameter_max }}</td>
+
+                                    {% if d.is_potentially_hazardous_asteroid == true %}
+                                    <td>Sim</td>
+                                    {% else %}
+                                    <td>Não</td>
+                                    {% endif %}
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        <div class="box-footer clearfix">
+                            <ul class="pagination pagination-sm no-margin pull-right">
+                                {% if data.page.number > 0 %}
+                                <li><a href="{{ path_for('asteroides') }}{{ data.page.number - 1 }}">Anterior</a></li>
+                                {% endif %}
+
+                                {% if data.page.number < data.page.total_pages %}
+                                <li><a href="{{ path_for('asteroides') }}{{ data.page.number + 1 }}">Próximo</a></li>
+                                {% endif %}
+
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+{% endblock %}

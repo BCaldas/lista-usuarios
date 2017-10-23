@@ -76,6 +76,5 @@ if ($_ENV['SLIM_MODE'] == 'development') {
 } else {
     $config['settings']['displayErrorDetails'] = false;
 };
-
 // Cria uma instância da aplicação com as configurações básicas ($config) e as configurações do twig ($container).
 $app = new Slim\App($config);

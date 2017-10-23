@@ -5,9 +5,13 @@ require_once dirname(__FILE__) . '/init.php';
 use lib\Session;
 use Service\UsuarioService;
 use Model\Usuario;
+use lib\RequestHandler;
+
 
 $session = Session::getInstance();
 $session->startSession();
+
+$usuarioService = UsuarioService::getInstance();
 
 $auth = (function($request, $response, $next) use ($session){
     if ($session->verify('logado'))
@@ -19,8 +23,6 @@ $auth = (function($request, $response, $next) use ($session){
         return $response->withRedirect($url);
     }
 });
-
-$usuarioService = UsuarioService::getInstance();
 
 $app->get('/', function ($request, $response) use ($session){
     if ($session->verify('logado')) {
@@ -79,7 +81,7 @@ $app->group('/usuarios', function () use ($app, $session, $usuarioService, $auth
             'usuarios' => $usuarioService->getAll(),
             'nomeUsuario' => $session->get('nome')
         ]);
-    })->setName('listaUsuarios')->add($auth);
+    })->setName('listaUsuarios');
 
     $app->get('/usuario-logado', function ($request, $response) use ($session, $usuarioService){
 
@@ -87,7 +89,62 @@ $app->group('/usuarios', function () use ($app, $session, $usuarioService, $auth
             'usuario' => $usuarioService->getById($session->get('id'))[0],
             'nomeUsuario' => $session->get('nome')
         ]);
-    })->setName('usuarioLogado')->add($auth);
-});
+    })->setName('usuarioLogado');
+})->add($auth);
+
+$app->group('/nasa', function () use ($app, $session, $auth){
+
+
+    $app->map(['GET','POST'],'/apod', function ($request, $response) use ($session){
+
+        if(isset($request->getParsedBody()['date'])) {
+            $dataFormatada = DateTime::createFromFormat('d/m/Y', $request->getParsedBody()['date']);
+            $date = $dataFormatada->format('Y-m-d');
+
+        } else {
+            $date = '';
+        }
+
+        $requestHandler = new RequestHandler('https://api.nasa.gov/');
+
+        $data = json_decode($requestHandler->get(
+            "planetary/apod?date=".$date."&api_key=2BW9iPUD88k6Po3N2fsmAaM8vbFFh09uVOoHuc5t")->getBody());
+
+        return $this->view->render($response,'apod.twig', [
+            'nomeUsuario' => $session->get('nome'),
+            'data' => $data
+        ]);
+
+    })->setName('apod');
+
+    $app->get('/patentes', function ($request, $response) use ($session){
+
+        $requestHandler = new RequestHandler('https://api.nasa.gov/');
+
+        $data = json_decode($requestHandler->get(
+            "patents/content?query=temperature&limit=5&api_key=2BW9iPUD88k6Po3N2fsmAaM8vbFFh09uVOoHuc5t")->getBody());
+
+        return $this->view->render($response,'patentes.twig', [
+            'nomeUsuario' => $session->get('nome'),
+            'data' => $data
+        ]);
+
+    })->setName('patentes');
+
+    $app->get('/asteroides/[{page}]', function ($request, $response, $args) use ($session){
+
+        $requestHandler = new RequestHandler('https://api.nasa.gov/');
+
+        $data = json_decode($requestHandler->get(
+            "neo/rest/v1/neo/browse?page=".$args['page']."&size=20&api_key=2BW9iPUD88k6Po3N2fsmAaM8vbFFh09uVOoHuc5t")->getBody());
+
+        return $this->view->render($response,'asteroides.twig', [
+            'nomeUsuario' => $session->get('nome'),
+            'data' => $data
+        ]);
+
+    })->setName('asteroides');
+
+})->add($auth);
 
 $app->run();

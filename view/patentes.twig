@@ -1,0 +1,56 @@
+{% extends "base/template.twig" %}
+
+{% block title %}Patentes{% endblock %}
+
+{% block content%}
+
+    <div class="content-wrapper" style="min-height: 946px;">
+    <section class="content-header">
+        <h1>
+            Nasa
+            <small>Patentes</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><i class="fa fa-home"></i> Home</li>
+            <li> Nasa </li>
+            <li class="active">Patentes</li>
+        </ol>
+    </section>
+
+    <section class="content">
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+
+                    <div class="box-body">
+                        <table id="example2" class="table table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th>Categoria</th>
+                                <th>Número Ref.</th>
+                                <th>Título</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for d in data.results %}
+                                <tr>
+                                    <td>{{ d.category }}</td>
+                                    <td>{{ d.reference_number }}</td>
+                                    <td>{{ d.title }}</td>
+
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+{% endblock %}

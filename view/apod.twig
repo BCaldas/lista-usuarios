@@ -1,0 +1,49 @@
+{% extends "base/template.twig" %}
+
+{% block title %}Imagens de Astronomia{% endblock %}
+
+{% block content%}
+
+    <div class="content-wrapper" style="min-height: 946px;">
+    <section class="content-header">
+        <h1>
+            Nasa
+            <small>Imagens de Astronomia</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><i class="fa fa-home"></i> Home</li>
+            <li> Nasa</li>
+            <li class="active">Imagens</li>
+        </ol>
+    </section>
+
+    <section class="content">
+        <div class="box box-widget">
+            <div class="box-header with-border">
+                <div class="user-block">
+                    <label>Pesquise por uma Data</label>
+                    <form method="post" class="sidebar-form" style="width: 20%">
+                        <div class="input-group">
+                            <input type="text" name="date" class="form-control" placeholder="dd/mm/aaaa">
+                            <span class="input-group-btn">
+                 <button type="submit" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                    </button>
+              </span>
+                        </div>
+                    </form>
+                    <h3>{{ data.title }}</h3>
+                    <h4>{{ data.date|date('d/m/Y') }}</h4>
+
+                </div>
+
+            <div class="box-body">
+                <img class="img-responsive pad" src="{{ data.url }}" alt="Foto do dia {{ data.date|date('d/m/Y') }}">
+
+                <p>{{ data.explanation }}</p>
+            </div>
+
+        </div>
+        </div>
+    </section>
+    </div>
+{% endblock %}
