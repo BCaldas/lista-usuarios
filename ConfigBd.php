@@ -1,6 +1,6 @@
 <?php
 
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'emiolo');
-define('DB_USER', 'root');
-define('DB_PASS', '');
+define('DB_HOST', 'localhost'); //Servidor
+define('DB_NAME', 'emiolo'); //Nome do Banco de Dados
+define('DB_USER', 'root'); //Usuário
+define('DB_PASS', ''); //Senha
