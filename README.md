@@ -25,6 +25,8 @@ Pequeno sistema web para cadastro, listagem e login de usuários e acesso a algu
 
 - Guzzle para realizar chamadas HTTP a apis's (https://github.com/guzzle/guzzle)
 
+- Tema Admin LTE (https://adminlte.io/themes/AdminLTE/) 
+
 ## Instalação
 
 - clone o repostório dentro da pasta de seu servidor Web
