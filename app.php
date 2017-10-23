@@ -4,6 +4,7 @@ require_once dirname(__FILE__) . '/init.php';
 
 use lib\Session;
 use Service\UsuarioService;
+use Model\Usuario;
 
 $session = Session::getInstance();
 $session->startSession();
@@ -55,14 +56,38 @@ $app->get('/novo-usuario', function ($request, $response) {
     return $this->view->render($response,'novo-usuario.twig');
 })->setName('novoUsuario');
 
+$app->post('/novo-usuario', function ($request, $response) use ($usuarioService) {
+
+    $usuario = new Usuario();
+    $dataCriacao = new DateTime();
+
+    $usuario->setNome($request->getParsedBody()['nome']);
+    $usuario->setCargo($request->getParsedBody()['cargo']);
+    $usuario->setEmail($request->getParsedBody()['email']);
+    $usuario->setLogin($request->getParsedBody()['login']);
+    $usuario->setSenha(md5($request->getParsedBody()['senha']));
+    $usuario->setDataCriacao($dataCriacao->format('Y-m-d H:i:s'));
+    $usuarioService->insertNewUser($usuario);
+    return $response->withRedirect($this->router->pathFor('home'));
+});
+
 $app->group('/usuarios', function () use ($app, $session, $usuarioService, $auth){
 
     $app->get('/', function ($request, $response) use ($session, $usuarioService){
 
         return $this->view->render($response,'lista-usuarios.twig', [
-            'usuarios' => $usuarioService->getAll()
+            'usuarios' => $usuarioService->getAll(),
+            'nomeUsuario' => $session->get('nome')
         ]);
     })->setName('listaUsuarios')->add($auth);
+
+    $app->get('/usuario-logado', function ($request, $response) use ($session, $usuarioService){
+
+        return $this->view->render($response,'lista-usuarios.twig', [
+            'usuario' => $usuarioService->getById($session->get('id')),
+            'nomeUsuario' => $session->get('nome')
+        ]);
+    })->setName('usuarioLogado')->add($auth);
 });
 
 $app->run();

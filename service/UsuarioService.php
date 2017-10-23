@@ -2,8 +2,10 @@
 namespace Service;
 
 use Dao\UsuarioDao;
+use Exception;
 use Exceptions\LoginInvalidException;
 use lib\Session;
+use model\Usuario;
 
 class UsuarioService
 {
@@ -41,11 +43,26 @@ class UsuarioService
             $session = Session::getInstance();
             $session->set('logado',true);
             $session->set('nome',$usuario[0]->getNome());
-            $session->set('cargo', $usuario[0]->getCargo());
-            $session->set('dataCriacao', $usuario[0]->getDataCriacao());
+            $session->set('id', $usuario[0]->getUsuarioId());
             return true;
         } else {
             return false;
+        }
+    }
+
+    public function insertNewUser(Usuario $usuario) {
+        try{
+            $this->usuarioDao->insertUser($usuario);
+        } catch (Exception $e) {
+            die($e);
+        }
+    }
+
+    public function getById($id) {
+        try {
+            return $this->usuarioDao->findById($id);
+        } catch (Exception $e) {
+            die($e);
         }
     }
 }

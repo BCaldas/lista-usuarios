@@ -1,6 +1,6 @@
 {% extends "base/base.twig" %}
 
-{% block title %}Login{% endblock %}
+{% block title %}Novo Usuário{% endblock %}
 
 {% block body %}
     <body class="hold-transition login-page">
@@ -11,29 +11,32 @@
 
         <div class="login-box-body">
 
-            <p class="login-box-msg">Entre com seu login para iniciar a sessão</p>
-            {% include "base/flash-erro.twig" %}
-            {% include "base/flash-sucesso.twig" %}
+            <p class="login-box-msg">Cadastro de Novo Usuário</p>
+
             <form method="post">
                 <div class="form-group has-feedback">
+                    <input type="text" class="form-control" name="nome" placeholder="Nome" required>
+                </div>
+                <div class="form-group has-feedback">
+                    <input type="email" class="form-control" name="email" placeholder="E-mail" required>
+                </div>
+                <div class="form-group has-feedback">
+                    <input type="text" class="form-control" name="cargo" placeholder="Cargo" required>
+                </div>
+                <div class="form-group has-feedback">
                     <input type="text" class="form-control" name="login" placeholder="Login" required>
-                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
                 </div>
                 <div class="form-group has-feedback">
                     <input type="password" class="form-control" name="senha" placeholder="Senha" required>
-                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 </div>
                 <div class="row">
 
                     <div class="col-xs-4">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat">Entrar</button>
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Cadastrar</button>
                     </div>
 
                 </div>
             </form>
-
-            <a href="{{ path_for('novoUsuario') }}" class="text-center">Sou um novo usuário</a>
-
         </div>
 
     </div>
