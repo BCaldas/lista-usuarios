@@ -1,6 +1,6 @@
 {% extends "base/base.twig" %}
 {% block body %}
-<body class="hold-transition skin-blue-light sidebar-mini">
+<body class="hold-transition skin-blue-light sidebar-mini" style="height: auto; min-height: 100%;">
 {% block head %}
         <header class="main-header">
 
@@ -40,7 +40,7 @@
 
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                                        <a href="{{ path_for('usuarioLogado') }}" class="btn btn-default btn-flat">Perfil</a>
                                     </div>
                                     <div class="pull-right">
                                         <a href="{{ path_for('logout') }}" class="btn btn-default btn-flat">Sair</a>
@@ -77,9 +77,8 @@
             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="#"><i class="fa fa-circle-o"></i> Usuário Logado</a></li>
+                        <li><a href="{{ path_for('usuarioLogado') }}"><i class="fa fa-circle-o"></i> Usuário Logado</a></li>
                         <li><a href="{{ path_for('listaUsuarios') }}"><i class="fa fa-circle-o"></i> Usuários Cadastrados</a></li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i> Novo Usuário</a></li>
                     </ul>
                 </li>
             </ul>

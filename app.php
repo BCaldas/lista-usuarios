@@ -83,8 +83,8 @@ $app->group('/usuarios', function () use ($app, $session, $usuarioService, $auth
 
     $app->get('/usuario-logado', function ($request, $response) use ($session, $usuarioService){
 
-        return $this->view->render($response,'lista-usuarios.twig', [
-            'usuario' => $usuarioService->getById($session->get('id')),
+        return $this->view->render($response,'usuario-logado.twig', [
+            'usuario' => $usuarioService->getById($session->get('id'))[0],
             'nomeUsuario' => $session->get('nome')
         ]);
     })->setName('usuarioLogado')->add($auth);
