@@ -18,7 +18,6 @@ class Usuario
     private $cargo;
     private $email;
     private $data_criacao;
-    private $data_atualizacao;
 
     public function getUsuarioId()
     {
@@ -78,16 +77,6 @@ class Usuario
     public function setDataCriacao($data_criacao)
     {
         $this->data_criacao = $data_criacao;
-    }
-
-    public function getDataAtualizacao()
-    {
-        return $this->data_atualizacao;
-    }
-
-    public function setDataAtualizacao($data_atualizacao)
-    {
-        $this->data_atualizacao = $data_atualizacao;
     }
 
     public function getEmail()
